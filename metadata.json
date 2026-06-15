@@ -1,0 +1,6 @@
+{
+  "name": "Singapore Red Cross Academy Course Finder",
+  "description": "An interactive smart course finder, comparative curriculum matrix, prerequisite checker, and AI course advisor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
