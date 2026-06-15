@@ -50,7 +50,7 @@ export default function App() {
       {/* Main Container */}
       <div className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-10 md:py-14 space-y-10">
         
-        {/* Visual Header Block (Matches Screenshot exactly) */}
+        {/* Visual Header Block */}
         <header className="text-center space-y-4 max-w-3xl mx-auto" id="app-header">
           <span className="text-[#ed1b24] text-xs md:text-sm font-extrabold tracking-widest uppercase block animate-pulse">
             OUR COURSES
@@ -63,7 +63,7 @@ export default function App() {
           </p>
         </header>
 
-        {/* Dynamic Navigation Subtabs (Visual replica of the Screenshot design options bar) */}
+        {/* Dynamic Navigation Subtabs */}
         <div className="flex justify-center" id="navigation-subtabs-block">
           <div className="inline-flex py-1.5 px-2 bg-white border border-[#cbd5e1]/60 rounded-2xl shadow-2xs gap-2 md:gap-4">
             
@@ -96,7 +96,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Tab content area with template layouts */}
+        {/* Tab content area */}
         <main className="transition-all duration-300">
           {activeTab === 'recommendation' && (
             <InteractiveFinder 
@@ -114,50 +114,7 @@ export default function App() {
           )}
         </main>
 
-        {/* Advisory Bottom Banner Row (Visual replica matching bottom bar in screenshot) */}
-        <div className="bg-[#fff5f5]/30 rounded-2xl p-5 md:px-8 md:py-6 border border-[#fecaca]/70 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4 text-center md:text-left flex-col md:flex-row">
-            <div className="p-3 bg-white text-[#ed1b24] rounded-full border border-red-100 flex items-center justify-center shadow-2xs shrink-0">
-              <MessageCircle className="w-6 h-6 text-[#ed1b24]" />
-            </div>
-            <div>
-              <h4 className="font-extrabold text-[#0b1523] text-base">Still unsure?</h4>
-              <p className="text-xs text-gray-500 mt-1">Chat with our training advisors for personalised guidance, custom syllabus requests, or corporate quotes.</p>
-            </div>
-          </div>
-          <button
-            onClick={() => triggerOpenChatWithMsg("Hello! Can you help me find the best course for my career?")}
-            className="px-6 py-3 bg-white border border-[#ed1b24] hover:bg-[#fff9f9] text-[#ed1b24] font-extrabold text-xs rounded-xl shadow-xs transition cursor-pointer flex items-center gap-2 group whitespace-nowrap"
-          >
-            Chat With Us
-            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-          </button>
-        </div>
-
       </div>
-
-      {/* Floating Chat Advisor button (when chat is closed) */}
-      {!isChatOpen && (
-        <button
-          onClick={() => triggerOpenChatWithMsg()}
-          id="floating-chat-trigger"
-          className="fixed bottom-6 right-6 z-40 bg-[#ed1b24] hover:bg-[#cc121a] text-white p-4 rounded-full shadow-lg transition duration-300 hover:scale-105 cursor-pointer flex items-center justify-center gap-2 group"
-          title="Open AI Course Advisor"
-        >
-          <MessageCircle className="w-6 h-6" />
-          <span className="max-w-px group-hover:max-w-xs overflow-hidden transition-all duration-300 font-bold text-[10px] tracking-wider uppercase whitespace-nowrap block">
-            Ask AI Advisor
-          </span>
-        </button>
-      )}
-
-      {/* Sidebar AI Chat Widget */}
-      <AIChatAdvisor 
-        isOpen={isChatOpen}
-        onClose={() => setIsChatOpen(false)}
-        initialMessage={chatInitialMsg}
-        onInitialMessageCleared={clearInitialChatMsg}
-      />
 
       {/* SIDE-MODAL / DRAWER FOR DETAILED SYLLABUS SPECIFICATION */}
       {selectedCourse && (
@@ -254,35 +211,19 @@ export default function App() {
             </div>
 
             {/* Footer buttons */}
-            <div className="p-4 bg-slate-50 border-t border-gray-100 flex flex-col sm:flex-row gap-3 justify-end">
+            <div className="p-4 bg-slate-50 border-t border-gray-100 flex gap-3 justify-end">
               <button
                 type="button"
                 onClick={() => setSelectedCourseId(null)}
-                className="py-2 px-4 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold rounded-lg text-xs transition text-center cursor-pointer"
+                className="py-2 px-5 bg-[#ed1b24] hover:bg-[#cc121a] text-white font-extrabold rounded-lg text-xs transition text-center cursor-pointer"
               >
                 Close details
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedCourseId(null);
-                  triggerOpenChatWithMsg(`I want to ask a question about taking ${selectedCourse.name} (${selectedCourse.code}). Can you help me check prerequisites?`);
-                }}
-                className="py-2 px-5 bg-[#ed1b24] hover:bg-[#cc121a] text-white font-extrabold rounded-lg text-xs transition text-center cursor-pointer flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-                Ask Advisor About Registration
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Corporate footer info */}
-      <footer className="text-center py-6 text-[11px] text-[#88929e] bg-white border-t border-gray-100 mt-10">
-        <p>© 2026 Singapore Red Cross Academy (SRCA) — Interactive Course Alignment Hub.</p>
-        <p className="mt-1">All educational prerequisites and guidelines adhere to Ministry of Manpower (MOM) and National First Aid Council (NFAC).</p>
-      </footer>
     </div>
   );
 }
